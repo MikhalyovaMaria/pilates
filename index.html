@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пилатес - движение с дыханием</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Verdana', 'Geneva', sans-serif;
+            line-height: 1.7;
+            color: #2a2a2a;
+            background: #f0f4f8;
+        }
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: #1b2a4a;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .topbar .logo {
+            font-size: 1.3rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: #8ecae6;
+        }
+
+        .topbar nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .topbar nav a {
+            color: #e0e8f0;
+            text-decoration: none;
+            font-size: 0.95rem;
+            padding-bottom: 3px;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s, color 0.3s;
+        }
+
+        .topbar nav a:hover {
+            color: #8ecae6;
+            border-bottom-color: #8ecae6;
+        }
+
+        .hero {
+            background: linear-gradient(120deg, #1b2a4a 0%, #2e4a7a 60%, #8ecae6 100%);
+            color: #fff;
+            text-align: center;
+            padding: 90px 20px;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .main-container {
+            max-width: 1050px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        h2 {
+            font-size: 1.7rem;
+            color: #1b2a4a;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #6b7c93;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        h3 {
+            font-size: 1.15rem;
+            color: #2e4a7a;
+            margin-bottom: 8px;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 22px;
+            margin-bottom: 50px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 25px 22px;
+            box-shadow: 0 8px 25px rgba(27, 42, 74, 0.08);
+            border-top: 5px solid #8ecae6;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 14px 35px rgba(27, 42, 74, 0.15);
+        }
+
+        .card .icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        /* Списки */
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+
+        .quote-block {
+            background: #e8f1f8;
+            border-radius: 16px;
+            padding: 30px 35px;
+            margin: 40px 0;
+            text-align: center;
+            font-style: italic;
+            color: #2e4a7a;
+            font-size: 1.1rem;
+            position: relative;
+        }
+
+        .quote-block::before {
+            content: "“";
+            font-size: 4rem;
+            color: #8ecae6;
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            line-height: 1;
+        }
+
+        .timeline {
+            position: relative;
+            margin: 40px 0;
+            padding-left: 30px;
+            border-left: 3px solid #8ecae6;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            background: #fff;
+            padding: 20px 22px;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(27, 42, 74, 0.07);
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -39px;
+            top: 24px;
+            width: 14px;
+            height: 14px;
+            background: #1b2a4a;
+            border: 3px solid #8ecae6;
+            border-radius: 50%;
+        }
+
+        .timeline-item h3 {
+            margin-bottom: 5px;
+        }
+
+        .timeline-item .step-label {
+            font-size: 0.8rem;
+            color: #8ecae6;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0 50px;
+        }
+
+        .gallery figure {
+            background: #fff;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 8px 22px rgba(27, 42, 74, 0.1);
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery figcaption {
+            padding: 12px 16px;
+            font-size: 0.9rem;
+            color: #6b7c93;
+            font-style: italic;
+        }
+
+        /* Details */
+        details {
+            background: #fff;
+            padding: 18px 22px;
+            border-radius: 12px;
+            border: 1px solid #d0dde8;
+            margin: 20px 0;
+        }
+
+        summary {
+            font-weight: bold;
+            color: #1b2a4a;
+            cursor: pointer;
+        }
+
+        details p {
+            margin-top: 10px;
+        }
+
+        mark {
+            background: #cde9f6;
+            padding: 1px 5px;
+            border-radius: 3px;
+        }
+
+        .contact-strip {
+            background: #1b2a4a;
+            color: #e0e8f0;
+            text-align: center;
+            padding: 45px 20px;
+        }
+
+        .contact-strip h2 {
+            color: #8ecae6;
+            margin-bottom: 15px;
+        }
+
+        .contact-strip a {
+            color: #8ecae6;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .contact-strip a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            background: #14203a;
+            color: #8a9bb5;
+            text-align: center;
+            padding: 18px;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 700px) {
+            .topbar {
+                flex-direction: column;
+                padding: 12px 20px;
+            }
+
+            .topbar nav ul {
+                gap: 12px;
+                justify-content: center;
+            }
+
+            .hero {
+                padding: 60px 15px;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+                letter-spacing: 1px;
+            }
+
+            .main-container {
+                padding: 30px 15px;
+            }
+
+            .quote-block {
+                padding: 22px 20px;
+            }
+
+            .timeline {
+                padding-left: 20px;
+            }
+
+            .timeline-item::before {
+                left: -29px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="topbar">
+        <div class="logo">PILATES</div>
+        <nav>
+            <ul>
+                <li><a href="#about">О практике</a></li>
+                <li><a href="#benefits">Польза</a></li>
+                <li><a href="#steps">С чего начать</a></li>
+                <li><a href="#gallery">Галерея</a></li>
+                <li><a href="#contact">Контакты</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="hero">
+        <h1>Дыхание и движение</h1>
+        <p>Пилатес - это не про рекорды. Это про внимание к телу, контроль и внутренний баланс.</p>
+    </div>
+
+    <main class="main-container">
+
+        <section id="about">
+            <h2>О практике</h2>
+            <p class="section-subtitle">Мягко, осознанно и без спешки</p>
+
+            <div class="cards-grid">
+                <article class="card">
+                    <div class="icon">🌿</div>
+                    <h3>Что такое пилатес</h3>
+                    <p>Это система упражнений, которая развивает <strong>глубокие мышцы</strong>, улучшает осанку и учит дышать в такт движению.</p>
+                </article>
+
+                <article class="card">
+                    <div class="icon">🎯</div>
+                    <h3>Главный принцип</h3>
+                    <p>Не количество повторений, а <mark>качество</mark> каждого движения. Лучше сделать меньше, но правильно.</p>
+                </article>
+
+                <article class="card">
+                    <div class="icon">🧘‍♀️</div>
+                    <h3>Кому подходит</h3>
+                    <p>Новичкам, тем, кто много сидит за компьютером, и всем, кто хочет двигаться без нагрузки на суставы.</p>
+                </article>
+            </div>
+        </section>
+
+        <div class="quote-block">
+            «Пилатес - это не спорт. Это путь к себе через тело и дыхание».
+        </div>
+
+        <section id="benefits">
+            <h2>Польза</h2>
+            <p class="section-subtitle">Что меняется с регулярной практикой</p>
+
+            <div class="cards-grid">
+                <article class="card">
+                    <div class="icon">💪</div>
+                    <h3>Сильный кор</h3>
+                    <ul>
+                        <li>Укрепление мышечного корсета.</li>
+                        <li>Поддержка спины в течение дня.</li>
+                    </ul>
+                </article>
+
+                <article class="card">
+                    <div class="icon">🌱</div>
+                    <h3>Гибкость</h3>
+                    <ul>
+                        <li>Мягкая растяжка без боли.</li>
+                        <li>Свобода движений в суставах.</li>
+                    </ul>
+                </article>
+
+                <article class="card">
+                    <div class="icon">😌</div>
+                    <h3>Спокойствие</h3>
+                    <ul>
+                        <li>Снятие напряжения в шее и плечах.</li>
+                        <li>Дыхательные практики для Relax.</li>
+                    </ul>
+                </article>
+            </div>
+
+            <details>
+                <summary>Мой главный совет новичкам</summary>
+                <p>Не гонитесь за сложными упражнениями: начните с <strong>дыхания</strong> и базовых движений. Важнее <em>качество</em>, а не количество повторений.</p>
+            </details>
+        </section>
+
+        <section id="steps">
+            <h2>С чего начать</h2>
+            <p class="section-subtitle">Три шага к первой практике</p>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="step-label">Шаг 1</span>
+                    <h3>Коврик и удобная одежда</h3>
+                    <p>Найдите тихое место, постелите коврик и наденьте то, в чём удобно двигаться. Ничего больше не нужно.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <span class="step-label">Шаг 2</span>
+                    <h3>Дыхание - основа</h3>
+                    <p>Перед упражнениями сделайте несколько медленных вдохов и выдохов. Почувствуйте, как дышит тело.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <span class="step-label">Шаг 3</span>
+                    <h3>Базовые движения</h3>
+                    <p>Начните с простых упражнений лёжа на спине. Главное - не спешить и слушать свои ощущения.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery">
+            <h2>Галерея</h2>
+            <p class="section-subtitle">Атмосфера практики.</p>
+
+            <div class="gallery">
+                <figure>
+                    <img src="images/pilates1.jpeg" alt="Женщина выполняет упражнение пилатеса на коврике" width="800" height="400">
+                    <figcaption>Базовые упражнения на коврике.</figcaption>
+                </figure>
+
+                <figure>
+                    <img src="images/pilates-breathing-770x549.jpg" alt="Спокойная растяжка и дыхательные упражнения" width="800" height="400">
+                    <figcaption>Дыхание - основа пилатеса.</figcaption>
+                </figure>
+
+                <figure>
+                    <img src="images/pilates3.jpg" alt="Уютный зал для занятий пилатесом с ковриками и окнами" width="800" height="400">
+                    <figcaption>Тихое место помогает сосредоточиться.</figcaption>
+                </figure>
+            </div>
+        </section>
+    </main>
+
+    <aside id="contact" class="contact-strip">
+        <h2>Контакты</h2>
+        <p>Буду рада обменяться опытом и советами по практике:</p>
+        <p>📧 <a href="mailto:pilates.blog@mail.com">pilates.blog@mail.com</a></p>
+        <p style="font-size: 0.85rem; margin-top: 15px; opacity: 0.8;"><em>Учебный проект по HTML5.</em></p>
+    </aside>
+
+    <footer>
+        <p>&copy; 2026 Пилатес. Сделано с любовью к движению и спокойствию.</p>
+    </footer>
+
+</body>
+</html>
